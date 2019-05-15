@@ -1,7 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-
-<h1 class="jumbotron" style="text-align: center;">Welcome to Mangiamo</h1>
-
+    <h1 class="jumbotron" style="text-align: center;">Welcome to Mangiamo</h1>
+    <div id="recipes">
+        {% for item in data %}
+            <div class="card-body">
+                <img src="{{item['recipe']['image']}}" class="card-img-top" alt="...">
+                <h5 class="card-title">{{item['recipe']['label']}}</h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                <a href="{{item['recipe']['url']}}" class="card-link">Link</a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

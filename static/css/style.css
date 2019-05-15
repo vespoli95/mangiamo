@@ -1,0 +1,10 @@
+.card-body {
+    display: inline-block;
+    margin: 20px;
+    border: 2px solid silver;
+    padding: 50px;
+}
+
+div#recipes {
+    text-align: center;
+}
