@@ -1,7 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h1 class="jumbotron" style="text-align: center;">Welcome to Mangiamo</h1>
+    <div id="header">
+        <h1 class="jumbotron" style="text-align: center;">Welcome to Mangiamo</h1>
+        <form method="post">
+            <input type="search" name="searchBar" id="tbRecipeSearch" placeholder="Enter ingredients..."/>
+            <input type="submit" name="searchBtn" id="btnRecipeSearch" class="btn-success" value="Search" />
+        </form>
+    </div>
+    
     <div id="recipes">
         {% for item in data %}
             <div class="card-body">
@@ -12,4 +19,5 @@
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}

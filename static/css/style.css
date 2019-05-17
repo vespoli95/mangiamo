@@ -5,6 +5,6 @@
     padding: 50px;
 }
 
-div#recipes {
+div#recipes, div#header {
     text-align: center;
 }
