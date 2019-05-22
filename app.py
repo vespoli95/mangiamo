@@ -1,14 +1,10 @@
 from flask import Flask, render_template, request
-import requests
+import requests, config
+from config import app
 
-app = Flask(__name__)
 app_key = '8b0da9158df77edc612feef9e21d8b7f'
 app_id = 'dd2f8137'
 result_count = '20'
-
-
-
-
 
 #confin mySQL
 # app.config['MYSQL_HOST'] = 'localhost'

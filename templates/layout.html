@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Mangiamo</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='dist/bundle.css') }}">
 </head>
 <body>
     <ul class="nav nav-pills">
@@ -31,12 +30,7 @@
         </li> -->
     </ul>
     {% block body %}{% endblock %}
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-     integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" 
-     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{  url_for('static', filename='dist/bundle.js')  }}"></script>
+
 </body>
 </html>
