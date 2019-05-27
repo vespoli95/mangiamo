@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
-import requests, config
-from config import app
+import requests
+
+app = Flask(__name__)
 
 app_key = '8b0da9158df77edc612feef9e21d8b7f'
 app_id = 'dd2f8137'
-result_count = '20'
 
 #confin mySQL
 # app.config['MYSQL_HOST'] = 'localhost'
@@ -26,7 +26,8 @@ def index():
     
     if request.method == 'POST':
         q = request.form['searchBar']
-        url = "https://api.edamam.com/search?q=" + q + "&app_id=" + app_id + "&app_key=" + app_key + "&from=0&to=" + result_count
+        num_results = request.form['searchAmt']
+        url = "https://api.edamam.com/search?q=" + q + "&app_id=" + app_id + "&app_key=" + app_key + "&from=0&to=" + num_results
         print(url)
         response = requests.get(url)
         if response.status_code == 200:

@@ -1,9 +1,16 @@
 .card-body {
     display: inline-block;
     margin: 20px;
-    border: 2px solid silver;
+    background-color: rgba(0,0,0,.075);
     padding: 50px;
+    box-shadow: -5px 6px 11px 0px #ffb9b9;
 }
+
+    .card-body:hover {
+        cursor: pointer;
+        background-color: azure;
+        /* box-shadow: inset -1px -1px 0px 0px black; */
+    }
 
 div#recipes, div#header {
     text-align: center;
