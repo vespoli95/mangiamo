@@ -24,19 +24,19 @@ app_id = 'dd2f8137'
 @app.route("/", methods=['GET', 'POST'])
 def index():
     
-    if request.method == 'POST':
-        q = "https://api.edamam.com/search?q=" + request.form['searchBar']
-        num_results = "&from=0&to=" + '25'
-        num_ingredients = "&ingr=" + request.form['numIngredients'] if request.form['numIngredients'] != "" else ""
+    # if request.method == 'POST':
+    #     q = "https://api.edamam.com/search?q=" + request.form['searchBar']
+    #     num_results = "&from=0&to=" + '25'
+    #     num_ingredients = "&ingr=" + request.form['numIngredients'] if request.form['numIngredients'] != "" else ""
         
-        url =  q + "&app_id=" + app_id + "&app_key=" + app_key + num_results + num_ingredients
-        print(url)
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = response.json()['hits']
-            for key in data:
-                print(key['recipe']['label'])
-            return render_template('index.html', data=data)
+    #     url =  q + "&app_id=" + app_id + "&app_key=" + app_key + num_results + num_ingredients
+    #     print(url)
+    #     response = requests.get(url)
+    #     if response.status_code == 200:
+    #         data = response.json()['hits']
+    #         for key in data:
+    #             print(key['recipe']['label'])
+    #         return render_template('index.html', data=data)
 
     return render_template('index.html')
 
