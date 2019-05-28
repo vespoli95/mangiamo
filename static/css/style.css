@@ -1,17 +1,40 @@
 .card-body {
     display: inline-block;
     margin: 20px;
-    background-color: rgba(0,0,0,.075);
-    padding: 50px;
-    box-shadow: -5px 6px 11px 0px #ffb9b9;
+    background-color: #e8e8e8;
+    padding: 15px;
+    /* box-shadow: -5px 6px 11px 0px #ffb9b9; */
+    border: 2px solid #bc1212;
+    border-radius: 20px;
+    color: #5d0000;
+    width: 350px;
 }
 
     .card-body:hover {
         cursor: pointer;
-        background-color: azure;
+        background-color: #f2fafa;
         /* box-shadow: inset -1px -1px 0px 0px black; */
     }
 
+    .card-body h5 {
+        margin-top: 10px;
+        font-size: 25px;
+    }
+
+    .card-body img, .card-img-top {
+        width: 300px
+    }
+
+
 div#recipes, div#header {
     text-align: center;
+}
+
+body {
+    background-color: white;
+}
+
+h1.jumbotron {
+    background-color: #70130e;
+    color: #e8e8e8;
 }

@@ -26,8 +26,11 @@ def index():
     
     if request.method == 'POST':
         q = request.form['searchBar']
-        num_results = request.form['searchAmt']
-        url = "https://api.edamam.com/search?q=" + q + "&app_id=" + app_id + "&app_key=" + app_key + "&from=0&to=" + num_results
+        num_results = '25'
+        num_ingredients = request.form['numIngredients']
+        
+        
+        url = "https://api.edamam.com/search?q=" + q + "&app_id=" + app_id + "&app_key=" + app_key + "&from=0&to=" + num_results + "&ingr=" + num_ingredients
         print(url)
         response = requests.get(url)
         if response.status_code == 200:
