@@ -1,0 +1,58 @@
+@import '_variables.scss';
+
+.card-body {
+    display: inline-block;
+    margin: 20px;
+    background-color: $light_grey;
+    padding: 15px;
+    /* box-shadow: -5px 6px 11px 0px #ffb9b9; */
+    border: 2px solid $dark_blue;
+    border-radius: 20px;
+    color: $black;
+    width: 350px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #f2fafa;
+        /* box-shadow: inset -1px -1px 0px 0px black; */
+    }
+
+    h5 {
+        margin-top: 10px;
+        font-size: 25px;
+    }
+
+}
+
+.nav-pills {
+    a.nav-link {
+        color: $light_grey;
+        .active {
+            background-color: $light_blue !important;
+        }
+    }
+    
+}
+
+  
+.card-img-top {
+    width: 300px
+}
+
+
+div#recipes, div#header {
+    text-align: center;
+}
+
+body {
+    background-color: $tan;
+}
+
+.jumbotron {
+    background-color: #282B33;
+    padding: 30px;
+}
+
+h1 {
+    color: $light_grey;
+}

@@ -2,7 +2,6 @@
 
 {% block body %}
     <div id="header">
-        <h1 class="jumbotron" style="text-align: center;">Welcome to Mangiamo</h1>
         <form method="post" id ="frmRecipeSearch">
             <div> 
                 <input type="search" name="searchBar" id="tbRecipeSearch" placeholder="Enter ingredients..."/>
@@ -12,19 +11,19 @@
                 <label for="tbNumIngredients">Max # of Ingredients:</label>
                 <input type="number" name="numIngredients" id="tbNumIngredients" placeholder="Max # of Ingredients..." />
             </div>
-  </form>
+        </form>
     </div>
     
     <div id="recipes">
-        {% for item in data %}
+        <!-- {% for item in data %}
             <div class="card-body" onclick="window.location = '{{item['recipe']['url']}}'">
                 <img src="{{item['recipe']['image']}}" class="card-img-top" alt="...">
                 <h5 class="card-title">{{item['recipe']['label']}}</h5>
                 <p>Ingredients: {{item['recipe']['ingredients']|length}}</p>
-                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                 <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> 
                 <a href="{{item['recipe']['url']}}" class="card-link" style="display: none">Link</a>
-            </div>
-        {% endfor %}
+            </div> 
+        {% endfor %} -->
         
     </div>
     <div id="loader" style="text-align: center;">
