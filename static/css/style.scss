@@ -55,4 +55,22 @@ body {
 
 h1 {
     color: $light_grey;
+    font-family: 'Ranga', cursive;
+}
+
+
+[type=search] {
+    border: none;
+    border-radius: 4px;
+    width: 70%;
+    height: 50px;
+    font-size: 20px;
+    
+  }
+
+input#btnRecipeSearch {
+    height: 50px;
+    width: 90px;
+    font-size: 18px;
+    border-radius: 5px;
 }

@@ -3,14 +3,17 @@
 {% block body %}
     <div id="header">
         <form method="post" id ="frmRecipeSearch">
-            <div> 
-                <input type="search" name="searchBar" id="tbRecipeSearch" placeholder="Enter ingredients..."/>
-                <input type="button" name="searchBtn" id="btnRecipeSearch" class="btn-success" value="Search" />
+            <div class="container">
+                <div> 
+                    <input type="search" name="searchBar" id="tbRecipeSearch" placeholder="Enter ingredients..."/>
+                    <input type="button" name="searchBtn" id="btnRecipeSearch" class="btn-success" value="Search" />
+                </div>
+                <!-- <div>        
+                    <label for="tbNumIngredients">Max # of Ingredients:</label>
+                    <input type="number" name="numIngredients" id="tbNumIngredients" placeholder="Max # of Ingredients..." />
+                </div> -->
             </div>
-            <div>        
-                <label for="tbNumIngredients">Max # of Ingredients:</label>
-                <input type="number" name="numIngredients" id="tbNumIngredients" placeholder="Max # of Ingredients..." />
-            </div>
+           
         </form>
     </div>
     
