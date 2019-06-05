@@ -56,11 +56,9 @@
             e.preventDefault();
             apiCall(false);
         }
-    })
+    });
     ////on scroll to bottom
-    // $(window).scroll(function() {
-    //     if($(window).scrollTop() == $(document).height() - $(window).height()) {
-    //         apiCall(true);
-    //     }
-        
-    // });
+    window.onscroll = e => {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) 
+            apiCall(true);
+    };

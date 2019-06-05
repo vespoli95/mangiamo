@@ -3,8 +3,9 @@
   margin: 20px;
   background-color: #CDCFDE;
   padding: 15px;
-  /* box-shadow: -5px 6px 11px 0px #ffb9b9; */
-  border: 2px solid #053080;
+  -webkit-box-shadow: -5px 6px 11px 0px #0e2a4063;
+          box-shadow: -5px 6px 11px 0px #0e2a4063;
+  /* border: 2px solid #053080; */
   border-radius: 20px;
   color: #282B33;
   width: 350px;
