@@ -14,41 +14,41 @@ $(document).ready(function(){
     
             let url =  q + "&app_id=" + app_id + "&app_key=" + app_key + num_results + num_ingredients;
             
-            //$('#loader').empty().append("<img src='https://media3.giphy.com/media/sSgvbe1m3n93G/200w.webp?cid=790b76115ced8e3e567842422e986b52&rid=200w.webp' alt='loader'>")
-            fetch(url)
-            .then((res) => res.json())
-            .then((data) => {
-                hits = data['hits'];
-                console.log(hits);
-                recipes = document.querySelector('#recipes');
-                if (!appending)
-                    recipes.removeChild();
-                //console.log(recipes);
-            });
+            $('#loader').empty().append("<img src='https://media3.giphy.com/media/sSgvbe1m3n93G/200w.webp?cid=790b76115ced8e3e567842422e986b52&rid=200w.webp' alt='loader'>")
+            // fetch(url)
+            // .then((res) => res.json())
+            // .then((data) => {
+            //     hits = data['hits'];
+            //     console.log(hits);
+            //     recipes = document.querySelector('#recipes');
+            //     if (!appending)
+            //         recipes.removeChild();
+            //     //console.log(recipes);
+            // });
 
-            // $.ajax({
-            //     type: 'GET',
-            //     url: url,
-            //     dataType: 'json',
-            //     success: function(result){
-            //         //$('#loader').empty();
-            //         data = result['hits'];
-            //         if (!appending)
-            //             $('#recipes').empty();
-            //         for (let i = 0; i < data.length; i++){
-            //             $('#recipes').append(`<div class='card-body'
-            //                 onclick='window.location = \"" + data[i]['recipe']['url'] + "\"'>
-            //                 <img src='" + data[i]['recipe']['image'] + "' class='card-img-top' alt=''>
-            //                 <h5 class='card-title'>" + data[i]['recipe']['label'] + "</h5>
-            //                 <p>Ingredients: " + data[i]['recipe']['ingredients'].length + "</p>
-            //                 </div>`);
-            //         }
-            //         from += 25;
-            //         to += 25;
-            //     }, error: function(){
-            //         alert('There was an error, please refresh.');
-            //     }
-            //  });
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'json',
+                success: function(result){
+                    //$('#loader').empty();
+                    data = result['hits'];
+                    if (!appending)
+                        $('#recipes').empty();
+                    for (let i = 0; i < data.length; i++){
+                        $('#recipes').append("<div class='card-body'"
+                            + "onclick='window.location = \"" + data[i]['recipe']['url'] + "\"'>"
+                            + "<img src='" + data[i]['recipe']['image'] + "' class='card-img-top' alt=''>"
+                            + "<h5 class='card-title'>" + data[i]['recipe']['label'] + "</h5>"
+                            + "<p>Ingredients: " + data[i]['recipe']['ingredients'].length + "</p>"
+                            + "</div>");
+                    }
+                    from += 25;
+                    to += 25;
+                }, error: function(){
+                    alert('There was an error, please refresh.');
+                }
+             });
         } else {
             
         }
