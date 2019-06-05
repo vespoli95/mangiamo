@@ -21,6 +21,7 @@
             fetch(url)
             .then((res) => res.json())
             .then((data) => {
+                loader.innerHTML = "";
                 hits = data['hits'];
                 recipes = document.getElementById('recipes');
                 if (!appending)
@@ -37,7 +38,6 @@
                     to += 25;
             });
             
-            loader.innerHTML = "";
         } else {
             
         }
@@ -62,3 +62,14 @@
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) 
             apiCall(true);
     };
+
+    //ToTop button
+    document.getElementById('toTop').addEventListener('click', e => {
+        window.scrollTo(0, 0);
+    });
+
+    //header on click
+
+    document.getElementById('header').addEventListener('click', e => {
+        window.location.href = '/';
+    });

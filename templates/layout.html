@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="jumbotron">
-        <h1 style="text-align: center; float:right;">Mangiamo</h1>
+        <h1 id="header" style="text-align: center; float:right;">Mangiamo</h1>
         <ul class="nav nav-pills">
             <li class="nav-item">
                 <a class="nav-link active" href="/">Home</a>
@@ -43,6 +43,7 @@
     {% block body %}{% endblock %}
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/35757ef71c.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
 </body>
 </html>
