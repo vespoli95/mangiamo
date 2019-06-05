@@ -38,30 +38,6 @@
             });
             
             loader.innerHTML = "";
-
-            // $.ajax({
-            //     type: 'GET',
-            //     url: url,
-            //     dataType: 'json',
-            //     success: function(result){
-            //         //$('#loader').empty();
-            //         data = result['hits'];
-            //         if (!appending)
-            //             $('#recipes').empty();
-            //         for (let i = 0; i < data.length; i++){
-            //             $('#recipes').append(`<div class='card-body'
-            //                 onclick='window.location = \"" + data[i]['recipe']['url'] + "\"'>
-            //                 <img src='" + data[i]['recipe']['image'] + "' class='card-img-top' alt=''>
-            //                 <h5 class='card-title'>" + data[i]['recipe']['label'] + "</h5>
-            //                 <p>Ingredients: " + data[i]['recipe']['ingredients'].length + "</p>
-            //                 </div>`);
-            //         }
-            //         from += 25;
-            //         to += 25;
-            //     }, error: function(){
-            //         alert('There was an error, please refresh.');
-            //     }
-            //  });
         } else {
             
         }
