@@ -69,7 +69,6 @@
     });
 
     //header on click
-
     document.getElementById('header').addEventListener('click', e => {
         window.location.href = '/';
     });
