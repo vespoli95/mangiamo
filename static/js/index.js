@@ -7,9 +7,7 @@
 
 
     function apiCall(appending){
-
-        if (recipeSearch.value.length > 1) {
-    
+        if (recipeSearch.value.length > 1) {    
             let q = "https://api.edamam.com/search?q=" + recipeSearch.value;
             let num_results = "&from=" + from + "&to=" + to;
             let num_ingredients =  document.getElementById('tbNumIngredients') ? "&ingr=" 
@@ -51,7 +49,7 @@
         apiCall(false);
     });
     //on enter
-     recipeSearch.addEventListener('keyup', e => {
+    recipeSearch.addEventListener('keyup', e => {
         if (e.keyCode === 13){
             e.preventDefault();
             apiCall(false);

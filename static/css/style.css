@@ -24,10 +24,8 @@
 
 .nav-pills a.nav-link {
   color: #CDCFDE;
-}
-
-.nav-pills a.nav-link .active {
-  background-color: #175CB5 !important;
+  font-size: large;
+  font-weight: 450;
 }
 
 .card-img-top {
@@ -86,5 +84,29 @@ input#btnRecipeSearch {
   #toTop {
     left: 85%;
   }
+}
+
+h6 {
+  color: #CDCFDE;
+}
+
+h2 {
+  color: #053080;
+}
+
+form {
+  margin-top: 25px;
+}
+
+form input {
+  width: 90%;
+  border: 2px #CDCFDE solid;
+  border-radius: 5px;
+  padding: 6px;
+}
+
+form label {
+  color: #175CB5;
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */

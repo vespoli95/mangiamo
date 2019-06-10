@@ -27,9 +27,8 @@
 .nav-pills {
     a.nav-link {
         color: $light_grey;
-        .active {
-            background-color: $light_blue !important;
-        }
+        font-size: large;
+        font-weight: 450;
     }
     
 }
@@ -92,4 +91,29 @@ input#btnRecipeSearch {
     @media only screen and (max-width: 768px) {
         left: 85%;
     } 
+
+}
+
+h6 {
+    color: $light_grey;
+}
+
+h2 {
+    color: $dark_blue;
+}
+
+form {
+    margin-top: 25px;
+    & input {
+        width: 90%;
+        border: 2px $light_grey solid;
+        border-radius: 5px;
+        padding: 6px;
+        
+    }
+    & label {
+        color: $light_blue;
+        display: block;
+    }
+   
 }
