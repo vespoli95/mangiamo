@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 from functools import wraps
-import requests, datetime
+import requests, datetime, User
 
 app = Flask(__name__)
 
@@ -50,6 +50,7 @@ def register():
         last_name = request.form['last_name']
         age = request.form['age']
         country = request.form['country']
+        user = User()
 
         try:
             #create cursor
