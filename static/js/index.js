@@ -24,18 +24,21 @@
                 recipes = document.getElementById('recipes');
                 if (!appending)
                     recipes.removeChild(recipes.firstChild);
-                    for (let i = 0; i < hits.length; i++){
-                        recipes.innerHTML += 
-                        `<div class='card-body' onclick='window.location = "${hits[i]['recipe']['url']}"'>
-                            <img src='${hits[i]['recipe']['image']}' class='card-img-top' alt=''>
-                            <h5 class='card-title'>  ${hits[i]['recipe']['label']} </h5>
-                            <p>Ingredients:   ${hits[i]['recipe']['ingredients'].length}</p>
-                        </div>`
-                    }
-                    from += 25;
-                    to += 25;
+                for (let i = 0; i < hits.length; i++){
+                    recipes.innerHTML += 
+                    `<div class='card-body'>
+                        <div class="test">
+                            <i class="fas fa-heart fa-3x"></i>
+                        </div>
+                        <img src='${hits[i]['recipe']['image']}' class='card-img-top' alt=''  onclick='window.location = "${hits[i]['recipe']['url']}"'>
+                        <h5 class='card-title'>  ${hits[i]['recipe']['label']} </h5>
+                        <p>Ingredients:   ${hits[i]['recipe']['ingredients'].length}</p>
+                    </div>`
+                }
+                from += 25;
+                to += 25;
             });
-            
+
         } else {
             
         }
@@ -66,7 +69,8 @@
         window.scrollTo(0, 0);
     });
 
-    //header on click
-    document.getElementById('header').addEventListener('click', e => {
-        window.location.href = '/';
+    document.querySelector('.test').addEventListener('click', e => {
+        alert('test');
     });
+ 
+

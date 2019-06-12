@@ -50,12 +50,12 @@ def register():
         last_name = request.form['last_name']
         age = request.form['age']
         country = request.form['country']
-        user = User()
+        user = User(email, password, datetime.datetime.now(), first_name, last_name, age, country)
 
         try:
             #create cursor
             cur = mysql.connection.cursor()
-            query = "INSERT INTO users (email, password, date_joined, first_name, last_name, age, country) VALUES('{}', '{}', '{}', '{}', '{}', '{}','{}')".format(email, password, datetime.datetime.now(), first_name, last_name, age, country)
+            query = "INSERT INTO users (email, password, date_joined, first_name, last_name, age, country) VALUES('{}', '{}', '{}', '{}', '{}', '{}','{}')".format(user.email, user.password, user.date_joined, user.first_name, user.last_name, user.age, user.country)
             cur.execute(query)
 
             #commit to DB
@@ -109,7 +109,7 @@ def login():
                 #app.logger.info('PASSWORD NOT MATCHED')
                 
                 session['msg'] = ""
-                error = "Passwords do not match"
+                error = "Incorrect password"
                 return render_template('login.html', error=error)
             cur.close()
         else:
