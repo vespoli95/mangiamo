@@ -5,6 +5,7 @@
     let recipeSearch = document.getElementById('tbRecipeSearch');
     let loader = document.getElementById('loader');
 
+    let card_elements = [];
 
     function apiCall(appending){
         if (recipeSearch.value.length > 1) {    
@@ -35,14 +36,33 @@
                         <p>Ingredients:   ${hits[i]['recipe']['ingredients'].length}</p>
                     </div>`
                 }
+                card_elements = document.getElementsByClassName('card-body');
                 from += 25;
                 to += 25;
             });
-
         } else {
             
         }
     }
+
+    function user_like(){
+        
+    }
+      
+    document.addEventListener('click', e => {
+        if (e.target.className.indexOf('fa-heart') > -1){
+            if (e.target.className.indexOf('red') === -1){
+                user_like();
+                e.target.className += ' red';
+            }
+            else {
+                user_unlike();
+                e.target.className = 'fas fa-heart fa-3x';
+            }
+        }
+    });
+  
+
     //on change
      recipeSearch.addEventListener('change', e => {
         apiCall(false);
@@ -69,8 +89,6 @@
         window.scrollTo(0, 0);
     });
 
-    document.querySelector('.test').addEventListener('click', e => {
-        alert('test');
-    });
+  
  
 

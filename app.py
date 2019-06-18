@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 from functools import wraps
-import requests, datetime, User
+from User import User
+import requests, datetime
 
 app = Flask(__name__)
 
@@ -99,6 +100,7 @@ def login():
             if sha256_crypt.verify(password_candidate, password):
                 session['logged_in'] = True
                 session['first_name'] = data['first_name']
+                session['email'] = email
 
                 #flash('You are now logged in', 'success')
                 

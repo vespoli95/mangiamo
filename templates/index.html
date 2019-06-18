@@ -2,8 +2,8 @@
 
 {% block body %}
     <div id="header">
-        {% if session.username %}
-            <p>Welcome <strong>{{session.username}}</strong>, what would you like to eat today?</p>
+        {% if session.logged_in %}
+            <p>Welcome <strong>{{session.first_name}}</strong>, what would you like to eat today?</p>
         {% endif %}
         <form method="post" id ="frmRecipeSearch">
             <div class="container">
