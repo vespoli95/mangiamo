@@ -16,12 +16,30 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             {% if session.logged_in %}
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="user_profile" style="color:cyan;"
+                        role="button" aria-haspopup="true" aria-expanded="false">{{session.first_name}}
+                        <img src="https://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" id="profile_logo">
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li> -->
                 <li class="nav-item registration">
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" href="/likes/{{session.user_id}}" id="likes">Likes</a>
                 </li>
                 <li class="nav-item registration">
-                    <a class="nav-link" style="color:cyan;" href="">{{session.email}}</a>
+                    <a class="nav-link" href="/logout" style="color: red;">Logout</a>
                 </li>
+                
+                <li class="nav-item registration" style="display: none;">
+                    <a class="nav-link" id="user_id" style="color:cyan;" href="">{{session.user_id}}</a>
+                </li>
+
+                
             {% else %}
                 <li class="nav-item registration">
                     <a class="nav-link" href="/register">Register</a>
@@ -30,30 +48,22 @@
                     <a class="nav-link" href="/login">Login</a>
                 </li>
             {% endif %}
-            <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </li>
-            <li class="nav-item">
+        
+
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li> -->
+            </li>  -->
         </ul>
     </header>
    
     {% block body %}{% endblock %}
     <script src="https://kit.fontawesome.com/35757ef71c.js"></script> 
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/popper.min.js')}}"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         // header on click
         document.getElementById('header').addEventListener('click', e => {

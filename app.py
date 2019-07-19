@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session, logging
+from flask import Flask, jsonify, render_template, request, flash, redirect, url_for, session, logging
 from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 from functools import wraps
@@ -95,6 +95,7 @@ def login():
             # 1st stored stored hash only
             data = cur.fetchone()
             password = data['password']
+            user_id = data['user_id']
 
             # compare passwords
             if sha256_crypt.verify(password_candidate, password):
@@ -102,6 +103,11 @@ def login():
                 session['first_name'] = data['first_name']
                 session['email'] = email
 
+                query = "Select user_id from users where email = '{}'".format(email)
+                cur.execute(query)
+                user_id = cur.fetchone()['user_id']
+                print("USER ID: {}".format(user_id))
+                session['user_id'] = user_id
                 #flash('You are now logged in', 'success')
                 
                 session['msg'] = ""
@@ -137,6 +143,58 @@ def logout():
     session.clear()
     flash('You are now logged out', 'success')
     return redirect(url_for('index'))
+
+@app.route('/like', methods=['POST'])
+def like():
+    json = request.get_json()
+    date_liked = datetime.datetime.now()
+    #email = str(request.data['email'])
+    try:
+        # data = data[2:] 
+        cur = mysql.connection.cursor()
+
+        # get user by email
+        if json['isLike']:
+            query = "INSERT INTO likes (FK_likes_users_user_id, date_liked, url, label, num_of_ingredients, image, query) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(json["user_id"], date_liked, json["url"], json["label"], json["num_of_ingredients"], json['image'], json['query'])  
+        else: query = "DELETE FROM likes WHERE url = '{}' AND FK_likes_users_user_id = '{}'".format(json['url'], json['user_id'])
+        print(query)
+        cur.execute(query)
+
+        #commit to DB
+        mysql.connection.commit()
+
+        #close connection
+        cur.close()
+        return jsonify({"val": "Success"})
+    except Exception as e: 
+        print(e)
+        return jsonify({"val": "Error"})
+
+@app.route('/isLiked', methods=['POST'])
+def isLiked():
+    cur = mysql.connection.cursor()
+    url = request.get_json()['url']
+    user_id = request.get_json()['user_id']
+    
+    #get user by email
+    query = "SELECT COUNT(*) FROM likes WHERE url = '{}' AND FK_likes_users_user_id = '{}'".format(url, user_id)
+    cur.execute(query)
+    result = cur.fetchone()
+    #commit to DB
+    mysql.connection.commit()
+    print(result['COUNT(*)'])
+    #close connection
+    cur.close()
+    return str(result['COUNT(*)'] > 0)
+
+@app.route('/likes/<int:user_id>', methods=['GET', 'POST'])
+def likes(user_id):
+    cur = mysql.connection.cursor()
+    query = "SELECT * FROM likes where FK_likes_users_user_id = {}".format(user_id)
+    cur.execute(query)
+    data = cur.fetchall()
+    print(data) 
+    return render_template('likes.html', data=data)
 
 if __name__ == '__main__':
     app.secret_key = 'Sword099*'

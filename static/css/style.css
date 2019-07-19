@@ -117,4 +117,45 @@ form label {
 .red {
   color: red;
 }
+
+img#profile_logo {
+  height: 40px;
+}
+
+#numIngredients {
+  margin-bottom: 10px;
+}
+
+h6 {
+  display: block;
+  color: #282B33;
+}
+
+div.divMaxIngredients {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+div.divMaxIngredients div.divNumIngredients {
+  border: 2px solid #053080;
+  margin: 7px;
+  padding: 16px;
+}
+
+div.divMaxIngredients div.divNumIngredients p {
+  margin: 10px;
+}
+
+div.divMaxIngredients div.divNumIngredients:hover {
+  background-color: #CDCFDE;
+  cursor: pointer;
+}
+
+div.divMaxIngredients div.divNumIngredients.chosen {
+  background-color: #CDCFDE;
+}
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container" id="user_likes">
+        
+    </div>
+    <script type="text/javascript" src="{{url_for('static', filename='js/likes.js')}}"></script>
+    <script>
+        {% for like in data %}
+            document.querySelector('.container').innerHTML += 
+            `<div class='card-body'>
+                <img class='card-img-top' src='{{like.image}}' style='cursor: pointer;' onclick='window.location.href = "{{like.url}}"'>
+                <h5 class='card-title'>{{like.label}}</h5>
+            </div>`
+        {% endfor %}
+    </script>
+{% endblock %}

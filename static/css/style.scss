@@ -126,3 +126,39 @@ form {
     color: red;
 }
 
+img#profile_logo {
+    height: 40px;
+}
+
+#numIngredients {
+    margin-bottom: 10px;
+}
+
+
+h6 {
+    display: block;
+    color: $black;
+}
+
+
+div.divMaxIngredients {
+    display: flex;
+    justify-content: center;
+
+    div.divNumIngredients {
+        border: 2px solid $dark_blue;
+        margin: 7px;
+        padding: 16px;
+        p {
+            margin: 10px;
+        }
+        &:hover{
+            background-color: $light_grey;
+            cursor: pointer;
+        }
+        &.chosen {
+            background-color: $light_grey;
+        }
+    }
+}
+

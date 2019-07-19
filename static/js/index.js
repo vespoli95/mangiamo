@@ -4,39 +4,60 @@
     let to = 25;
     let recipeSearch = document.getElementById('tbRecipeSearch');
     let loader = document.getElementById('loader');
+    let user_id = document.getElementById('user_id');
 
     let card_elements = [];
+    let num_of_ingredients = '';
 
     function apiCall(appending){
         if (recipeSearch.value.length > 1) {    
             let q = "https://api.edamam.com/search?q=" + recipeSearch.value;
             let num_results = "&from=" + from + "&to=" + to;
-            let num_ingredients =  document.getElementById('tbNumIngredients') ? "&ingr=" 
-                +  document.getElementById('tbNumIngredients') : "";
+            let num_ingredients = num_of_ingredients  == '' ? '' : ("&ingr=" + num_of_ingredients);
             let url =  q + "&app_id=" + app_id + "&app_key=" + app_key + num_results + num_ingredients;
-            
+            console.log("num: ", num_of_ingredients)
+
             loader.innerHTML = "<img src='https://media3.giphy.com/media/sSgvbe1m3n93G/200w.webp?cid=790b76115ced8e3e567842422e986b52&rid=200w.webp' alt='loader'>";
-            
+            console.log("URL: ", url);
             fetch(url)
             .then((res) => res.json())
-            .then((data) => {
+            .then((data) => {                
+                let isGenerating = true;
                 loader.innerHTML = "";
                 hits = data['hits'];
                 recipes = document.getElementById('recipes');
-                if (!appending)
-                    recipes.removeChild(recipes.firstChild);
-                for (let i = 0; i < hits.length; i++){
-                    recipes.innerHTML += 
-                    `<div class='card-body'>
-                        <div class="test">
-                            <i class="fas fa-heart fa-3x"></i>
-                        </div>
-                        <img src='${hits[i]['recipe']['image']}' class='card-img-top' alt=''  onclick='window.location = "${hits[i]['recipe']['url']}"'>
-                        <h5 class='card-title'>  ${hits[i]['recipe']['label']} </h5>
-                        <p>Ingredients:   ${hits[i]['recipe']['ingredients'].length}</p>
-                    </div>`
+                if (!appending){
+                    from = 0;
+                    to = 25;
+                    recipes.innerHTML = "";
                 }
-                card_elements = document.getElementsByClassName('card-body');
+                // recipes.removeChild(recipes.firstChild);
+                for (let i = 0; i < hits.length; i++){
+                    let isLiked = false;
+                    let _body = {
+                        'user_id': user_id.innerText,
+                        'url': `${hits[i]['recipe']['url']}`
+                    };
+                    fetch('/isLiked', {       
+                        method: 'POST',
+                        body: JSON.stringify(_body),
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        }
+                    }).then(response => response.text())
+                    .then(data => {
+                        isLiked = data === 'True' ? true : false;
+                        recipes.innerHTML += 
+                        `<div class='card-body'>
+                            <input type="hidden" value=${hits[i]['recipe']['url']} />
+                            <i class="fas fa-heart fa-3x like_button ${isLiked ? 'red' : ''}"></i>
+                            <img src='${hits[i]['recipe']['image']}' class='card-img-top' alt=''  onclick='window.location = "${hits[i]['recipe']['url']}"'>
+                            <h5 class='card-title'> ${hits[i]['recipe']['label']} </h5>
+                            <p>Ingredients: ${hits[i]['recipe']['ingredients'].length}</p>
+                        </div>`
+                    });
+                }
+                isGenerating = false;
                 from += 25;
                 to += 25;
             });
@@ -45,23 +66,80 @@
         }
     }
 
-    function user_like(){
-        
+    function postData(_user_id, element, isLike){
+        if (isLike){
+            let data = {
+                'user_id': _user_id,
+                'url': element.target.parentElement.children[0].value,
+                'image': element.target.parentElement.children[2].currentSrc,
+                'label': element.target.parentElement.children[3].innerText,
+                'num_of_ingredients': element.target.parentElement.children[4].innerText.substring(element.target.parentElement.children[4].innerText.length - 1),
+                'query': recipeSearch.value.trim(),
+                'isLike': isLike
+            };
+            fetch('/like', {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                },
+                dataType: 'text/plain',
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+        } else {
+            let data = {
+                'user_id': _user_id,
+                'url': element.target.parentElement.children[0].value,
+                'isLike': isLike
+            };
+            fetch('/like', {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                },
+                dataType: 'text/plain',
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+        }
+        // .then(response => response.json())
+        // .then(res => {
+        //     if (res.val === 'Error')
+        //         console.log(element);
+
+        // });
+        // parses JSON response into native Javascript objects 
     }
       
     document.addEventListener('click', e => {
-        if (e.target.className.indexOf('fa-heart') > -1){
-            if (e.target.className.indexOf('red') === -1){
-                user_like();
-                e.target.className += ' red';
+        if (e.target.className.indexOf('like_button') > -1){
+            if (user_id){
+                if (e.target.className.indexOf('red') === -1){
+                    console.log(e);
+                    postData(user_id.text, e, true);
+                    e.target.className += ' red';                    
+                }
+                else {
+                    postData(user_id.text, e, false);
+                    e.target.className = 'fas fa-heart fa-3x like_button';
+                }
+            } else
+                e.target.innerHTML = '<p style="color:black;font-size: small">Must be logged in to like.</p>';
+        } else if (e.target.className.indexOf('divNumIngredients') > -1){
+            //on click, if block isn't selected, make it selected
+            if (e.target.className.indexOf('chosen') == -1){
+                document.querySelectorAll('.divNumIngredients').forEach(
+                    el => {
+                        if (el !== e && el.className.indexOf('chosen') > -1)
+                            el.className = 'divNumIngredients';
+                    }
+                )
+                num_of_ingredients = e.target.firstElementChild.innerText;
+                apiCall(false);
+                e.target.className += ' chosen';
+                
             }
-            else {
-                user_unlike();
-                e.target.className = 'fas fa-heart fa-3x';
-            }
+            else e.target.className = 'divNumIngredients';          
         }
     });
-  
 
     //on change
      recipeSearch.addEventListener('change', e => {
@@ -89,6 +167,4 @@
         window.scrollTo(0, 0);
     });
 
-  
- 
-
+   
