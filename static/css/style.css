@@ -77,7 +77,6 @@ input#btnRecipeSearch {
   cursor: pointer;
   color: #CDCFDE;
   text-align: center;
-  padding-top: 10px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -110,12 +109,16 @@ form label {
   display: block;
 }
 
-.fa-heart {
+#up-arrow {
   color: white;
 }
 
 .red {
-  color: red;
+  color: red !important;
+}
+
+.like_button {
+  color: white;
 }
 
 img#profile_logo {
@@ -128,7 +131,7 @@ img#profile_logo {
 
 h6 {
   display: block;
-  color: #282B33;
+  color: #053080;
 }
 
 div.divMaxIngredients {
@@ -157,5 +160,10 @@ div.divMaxIngredients div.divNumIngredients:hover {
 
 div.divMaxIngredients div.divNumIngredients.chosen {
   background-color: #CDCFDE;
+}
+
+#up-arrow {
+  width: 100%;
+  height: 100%;
 }
 /*# sourceMappingURL=style.css.map */

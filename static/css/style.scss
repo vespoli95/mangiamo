@@ -86,7 +86,6 @@ input#btnRecipeSearch {
     cursor: pointer;
     color: $light_grey;
     text-align: center;
-    padding-top: 10px;
 
     @media only screen and (max-width: 768px) {
         left: 85%;
@@ -118,12 +117,16 @@ form {
    
 }
 
-.fa-heart {
+#up-arrow {
     color: white;
 }
 
 .red {
-    color: red;
+    color: red !important;
+}
+
+.like_button {
+    color:white;
 }
 
 img#profile_logo {
@@ -137,7 +140,7 @@ img#profile_logo {
 
 h6 {
     display: block;
-    color: $black;
+    color: $dark_blue;
 }
 
 
@@ -162,3 +165,7 @@ div.divMaxIngredients {
     }
 }
 
+#up-arrow {
+    width: 100%;
+    height: 100%;
+}

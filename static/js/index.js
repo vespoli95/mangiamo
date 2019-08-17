@@ -34,8 +34,9 @@
                 // recipes.removeChild(recipes.firstChild);
                 for (let i = 0; i < hits.length; i++){
                     let isLiked = false;
+                    console.log(user_id);
                     let _body = {
-                        'user_id': user_id.innerText,
+                        'user_id': user_id ? user_id.innerText : '',
                         'url': `${hits[i]['recipe']['url']}`
                     };
                     fetch('/isLiked', {       
@@ -150,10 +151,11 @@
         apiCall(false);
     });
     //on enter
-    recipeSearch.addEventListener('keyup', e => {
-        if (e.keyCode === 13){
+    recipeSearch.addEventListener('keypress', e => {
+        if (e.keyCode == 13){            
             e.preventDefault();
             apiCall(false);
+            return false
         }
     });
     ////on scroll to bottom
