@@ -1,4 +1,4 @@
-@import '_variables.scss';
+@import '_colors.scss';
 
 .card-body {
     display: inline-block;
@@ -24,6 +24,10 @@
 
 }
 
+.container {
+    text-align: center;
+}
+
 .nav-pills {
     a.nav-link {
         color: $light_grey;
@@ -34,12 +38,12 @@
 }
 
   
-.card-img-top {
-    width: 300px
-}
+// .card-img-top {
+//     width: 300px
+// }
 
 
-div#recipes, div#header {
+div#recipes, div#header, div#user_likes {
     text-align: center;
 }
 
@@ -67,7 +71,7 @@ h1 {
     height: 50px;
     font-size: 20px;
     
-  }
+}
 
 input#btnRecipeSearch {
     height: 50px;
